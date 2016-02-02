@@ -1,5 +1,5 @@
 <?php
-	include 'user.php';
+	include '../user.php';
 	
 	$user= new User();
 	$array=$user->selectAllUsers();
