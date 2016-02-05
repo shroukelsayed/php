@@ -14,7 +14,7 @@
 		
 		public function __construct($id=-1) {
 		if(self::$conn == Null) {
-			self::$conn = mysqli_connect('localhost','root','osama','store');
+			self::$conn = mysqli_connect('localhost','root','iti','store');
 		}
 
 		if($id!=-1) {

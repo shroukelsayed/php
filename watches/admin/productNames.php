@@ -1,3 +1,6 @@
+<?php
+include 'adminsession.php';
+?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
@@ -110,6 +113,7 @@
                                 <a href="insertCategory.php"><input type="button" class="btn btn-primary " value="Insert Categories"></a>
                                 <a href="insertSubCategory.php"><input type="button" class="btn btn-primary " value="Insert SubCategories"></a>
                                 <a href="productNames.php"><input type="button" class="btn btn-primary " value="Insert Products"></a>
+                                
                             </div>
                         <div class="panel panel-primary text-center no-boder bg-color-blue input-md">
                             <form action="productNames.php" id="main" method="post" role="form" class=" form-inline">
@@ -153,7 +157,7 @@
                                             elseif ($_POST['choose']=='ch2') {
 
                                                 ?>
-                <form method="post" onsubmit="return checkAll();">
+                <form method="post"  onsubmit="return checkAll();"  enctype='multipart/form-data'>
           <label for="product">Enter Product Name:</label>
               <input type="text" id="txt1" name="product" class="form-control" id="product"><span id="sp1"></span>
             <span id="sp5"></span>
@@ -166,8 +170,13 @@
              <label for="sale">Enter Product Sale:</label>
        <input type="text" name="sale" id="txt4" class="form-control" id="sale"><span id="sp4"></span>
             <br>
+            <input type='file' name='image1' />
+            <input type='file' name='image2' />
+          
+            <input type='file' name='image3' />
+            <input type='file' name='image4' />
      <input type="text" name="scat" value=<?php echo $_POST['scat'];?> class="hidden">
-           <button type="submit" name="choose" value="add" id="add" class="btn btn-primary">Add Product</button>
+           <button type="submit" name="choose" value="add" id="add" class="btn btn-primary">Add Product</button></form>
        <script src="assets/js/jquery-1.10.2.js"></script>
 
    <!-- <script type="text/javascript" src="CetegoriesValidation.js"></script> -->
@@ -275,6 +284,41 @@
                         $product->price =  $_POST['price'];
                         $product->qty =  $_POST['qty'];
                         $product->sale =  $_POST['sale'];
+                        echo "<pre>";
+                        echo print_r($_FILES);
+                        if(!empty($_FILES['image1']['name'])){
+                           $name = $_FILES['image1']['name'];
+                           $tmp_name = $_FILES['image1']['tmp_name'];
+                           move_uploaded_file($tmp_name,'../images/'.strtotime("now").$name);
+                           $product->pic1= strtotime("now").$name;
+                        }
+                        else
+                            $product->pic1= NULL;
+                        if(!empty($_FILES['image2']['name'])){
+                            $name = $_FILES['image2']['name'];
+                            $tmp_name = $_FILES['image2']['tmp_name'];
+                            move_uploaded_file($tmp_name,'../images/'.strtotime("now").$name);
+                           $product->pic2= strtotime("now").$name;
+                        }
+                        else
+                            $product->pic2= NULL; 
+                      
+                        if(!empty($_FILES['image3']['name'])){
+                            $name = $_FILES['image3']['name'];
+                            $tmp_name = $_FILES['image3']['tmp_name'];     
+                            move_uploaded_file($tmp_name,'../images/'.strtotime("now").$name);
+                           $product->pic3= strtotime("now").$name;
+                        }
+                        else
+                            $product->pic3= NULL;
+                        if(!empty($_FILES['image4']['name'])){
+                            $name = $_FILES['image4']['name'];
+                            $tmp_name = $_FILES['image4']['tmp_name']; 
+                            move_uploaded_file($tmp_name,'../images/'.strtotime("now").$name);
+                           $product->pic4= strtotime("now").$name;
+                        }
+                        else
+                            $product->pic4= NULL;
                         $prod=$product->insert();
                     }
                 }

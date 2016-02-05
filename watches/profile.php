@@ -38,6 +38,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
            <div class="header_top_right">
 			 <ul class="header_user_info">
 				  <a class="login" href="profile.php">
+			
 				  <?php
 					session_start();
 					include 'user.php';

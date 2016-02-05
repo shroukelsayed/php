@@ -6,11 +6,15 @@
 		var $price;
 		var $qty;
 		var $sale;
+		var $pic1;
+		var $pic2;
+		var $pic3;
+		var $pic4;
 
 		private static $conn = Null;
 
 		public function __construct($id=-1) {
-		if(is_null(self::$conn)) self::$conn = mysqli_connect('localhost','root','osama','store');
+		if(is_null(self::$conn)) self::$conn = mysqli_connect('localhost','root','iti','store');
 		if($id!=-1) {
 			$query = "select * from products where id=$id limit 1";
 			$result = mysqli_query(self::$conn,$query);
@@ -21,11 +25,15 @@
 			$this->price = $products['price'];
 			$this->qty= $products['qty'];
 			$this->sale= $products['sale'];
+			$this->pic1= $products['pic1'];
+			$this->pic2= $products['pic2'];
+			$this->pic3= $products['pic3'];
+			$this->pic4= $products['pic4'];
 			}
 		}
 	
 		function insert() {
-			$query = "insert into products(name,cat_id,price,qty,sale) values('$this->name','$this->cat_id','$this->price','$this->qty','$this->sale')";
+			$query = "insert into products(name,cat_id,price,qty,sale,pic1,pic2,pic3,pic4) values('$this->name','$this->cat_id','$this->price','$this->qty','$this->sale' ,'$this->pic1','$this->pic2','$this->pic3','$this->pic4')";
 			$result  = mysqli_query(self::$conn,$query);
 			return mysqli_insert_id(self::$conn);
 		}

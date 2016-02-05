@@ -62,7 +62,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					            </li></a>
 					<?php
 							}
+						else{
+							header("location:home.php");
 						}
+					}
+
 				  ?>
 			  <div class="clearfix"> </div>
 		     </ul>
