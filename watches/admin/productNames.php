@@ -41,10 +41,10 @@ include 'adminsession.php';
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        <li><a href="../profile.php"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="../login.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -70,9 +70,9 @@ include 'adminsession.php';
                                  //   include 'SelectAllCategories.php';
                                     include 'categories.php';
                                     $categs=new categories();
-                                    $array = $categs->categories(NULL);
+                                    $array = @$categs->categories(NULL);
                                     foreach ($array as $key => $categories) {
-                                        $subs=$categs->categories($categories['id']);
+                                        $subs=@$categs->categories($categories['id']);
                                 ?>
                                 <a href="#"><?php echo $categories['name'];?><span class="fa arrow"></span></a>
                                 <?php 
@@ -122,7 +122,7 @@ include 'adminsession.php';
                                     <select name="categories" class="form-control">
                                     <?php
                                         $categs=new categories();
-                                        $array = $categs->categories(NULL);
+                                        $array = @$categs->categories(NULL);
                                         foreach ($array as $key => $categories) {
                                     ?>    
                                         <option value=<?php echo $categories['id'];?>><?php echo $categories['name'];?></option>
@@ -142,7 +142,7 @@ include 'adminsession.php';
                                                 <label for="sCategories">ChooseSubCategory:</label>
                                                     <select name="sCategories" class="form-control">
                                                     <?php
-                                                        $array2 = $categs->categories($_POST['categories']);
+                                                        $array2 = @$categs->categories($_POST['categories']);
                                                         foreach ($array2 as $key => $sCategories) {
                                                     ?>    
                                                         <option value=<?php echo $sCategories['id'];?>><?php echo $sCategories['name'];?></option>
@@ -285,41 +285,41 @@ include 'adminsession.php';
                         $product->qty =  $_POST['qty'];
                         $product->sale =  $_POST['sale'];
                         echo "<pre>";
-                        echo print_r($_FILES);
+                        // echo print_r($_FILES);
                         if(!empty($_FILES['image1']['name'])){
                            $name = $_FILES['image1']['name'];
-                           $tmp_name = $_FILES['image1']['tmp_name'];
-                           move_uploaded_file($tmp_name,'../images/'.strtotime("now").$name);
-                           $product->pic1= strtotime("now").$name;
+                           $tmp_name = @$_FILES['image1']['tmp_name'];
+                           @move_uploaded_file($tmp_name,'../images/'.strtotime("now").$name);
+                           $product->pic1= @strtotime("now").$name;
                         }
                         else
                             $product->pic1= NULL;
                         if(!empty($_FILES['image2']['name'])){
                             $name = $_FILES['image2']['name'];
-                            $tmp_name = $_FILES['image2']['tmp_name'];
-                            move_uploaded_file($tmp_name,'../images/'.strtotime("now").$name);
-                           $product->pic2= strtotime("now").$name;
+                            $tmp_name = @$_FILES['image2']['tmp_name'];
+                            @move_uploaded_file($tmp_name,'../images/'.strtotime("now").$name);
+                           $product->pic2= @strtotime("now").$name;
                         }
                         else
                             $product->pic2= NULL; 
                       
                         if(!empty($_FILES['image3']['name'])){
                             $name = $_FILES['image3']['name'];
-                            $tmp_name = $_FILES['image3']['tmp_name'];     
-                            move_uploaded_file($tmp_name,'../images/'.strtotime("now").$name);
+                            $tmp_name = @$_FILES['image3']['tmp_name'];     
+                            @move_uploaded_file($tmp_name,'../images/'.strtotime("now").$name);
                            $product->pic3= strtotime("now").$name;
                         }
                         else
                             $product->pic3= NULL;
                         if(!empty($_FILES['image4']['name'])){
                             $name = $_FILES['image4']['name'];
-                            $tmp_name = $_FILES['image4']['tmp_name']; 
-                            move_uploaded_file($tmp_name,'../images/'.strtotime("now").$name);
+                            $tmp_name = @$_FILES['image4']['tmp_name']; 
+                            @move_uploaded_file($tmp_name,'../images/'.strtotime("now").$name);
                            $product->pic4= strtotime("now").$name;
                         }
                         else
                             $product->pic4= NULL;
-                        $prod=$product->insert();
+                        @$prod=$product->insert();
                     }
                 }
             ?>	
@@ -341,9 +341,5 @@ include 'adminsession.php';
     <script src="assets/js/morris/morris.js"></script>
     <!-- Custom Js -->
     <script src="assets/js/custom-scripts.js"></script>
-
-   
-     
-    
 </body>
 </html>

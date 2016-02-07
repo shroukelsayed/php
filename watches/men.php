@@ -41,7 +41,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				  <a class="login" href="profile.php">
 				  <?php
 					include 'session.php';
-					
 				  ?>
 				 <div class="clearfix"> </div> 	
 		     </ul>
@@ -75,9 +74,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	     	<?php
                 include 'admin/categories.php';
                 $categs=new categories();
-                $array = $categs->categories(NULL);
+                @$array = $categs->categories(NULL);
                 foreach ($array as $key => $categories) {
-                    $subs=$categs->categories($categories['id']);
+                    @$subs=$categs->categories($categories['id']);
             ?>
 			<li><a class="color2" href="#"><?php echo $categories['name'];?></a>
 				<div class="megapanel">
@@ -158,7 +157,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             $categs=new categories();
             $array = $categs->categories(NULL);
             foreach ($array as $key => $categories) {
-                $subs=$categs->categories($categories['id']);
+                @$subs=$categs->categories($categories['id']);
           ?>
             <ul class="product-categories color">
     	  <h3><?php echo $categories['name'];?></h3>
@@ -198,11 +197,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
        	   		</div>
 				<div class="clearfix"></div>
 				<ul>
+				<!-- //// display product from database  -->
 				<?php
 	                include 'admin/product.php';
 	                $prod = new Products();
-	                $array = @$prod->selectProductsById($_GET['cat_id']);
-	                //var_dump($array);
+	                $array = @$prod->serchById($_GET['cat_id']);
+	                // var_dump($array);
 	                foreach ($array as $key => $value) {
 	            ?>
 				<!-- ////////////////////////// -->
@@ -217,21 +217,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								   <div class="price mount item_price"><?php echo $value['price']; ?></div>
 								   <br/><br/>
 								   <a class="button item_add cbp-vm-icon cbp-vm-add" href="men.php?cat_id=<?php echo $value['cat_id'];?>&cart=<?php echo $value['id']; ?>">Add to cart</a>
-
-								   <!-- // add product into cart -->
-
-
-
-
-
-
-
-
-
-
-
 								   
-
 								 </div>		
 							  </div>
 		                     </div>
@@ -241,7 +227,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<?php 
 						}
 					?>
+
+					<!-- // add product into cart -->
+
+				   <?php
+    					include 'cart.php';
+				    	$cart = new cart();
+				    	// var_dump($_GET);
+				    	@$cart->insert($_SESSION['user_id'],$_GET['cart']);
+				   ?>
 				<!-- ////////////////////////// -->
+				
 				</ul>
 			</div>
 			<script src="js/cbpViewModeSwitch.js" type="text/javascript"></script>

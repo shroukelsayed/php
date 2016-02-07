@@ -14,7 +14,7 @@
 		private static $conn = Null;
 
 		public function __construct($id=-1) {
-		if(is_null(self::$conn)) self::$conn = mysqli_connect('localhost','root','iti','store');
+		if(is_null(self::$conn)) self::$conn = mysqli_connect('localhost','root','osama','store');
 		if($id!=-1) {
 			$query = "select * from products where id=$id limit 1";
 			$result = mysqli_query(self::$conn,$query);
@@ -95,7 +95,7 @@
 			return $data;	
 		}
 		function serchById($id) {
-		$query = "select * from products where id=$id";
+		$query = "select * from products where cat_id=$id";
 		$result = mysqli_query(self::$conn,$query);
 		$data = [];
 			while($row = mysqli_fetch_assoc($result)) {

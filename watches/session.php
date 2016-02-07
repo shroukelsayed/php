@@ -15,7 +15,11 @@ if(isset($_SESSION['user_id'])) {
 		<a href="admin/index.php">
 		<li class="user_desc">&nbsp&nbsp<img src="images/settings-icon.png" width="20px" height="20px" align="left">&nbsp&nbsp&nbsp Settings
         </li></a>
-<?php
-		}
+		<?php
+			}
+		?>
+		<br/>
+		<a href="logout.php"><li>Log Out </li> 
+	<?php
 	}
 ?>

@@ -9,7 +9,7 @@ class cart{
 	private static $conn = Null;
 
 	public function __construct($id=-1) {
-		if(is_null(self::$conn)) self::$conn = mysqli_connect('localhost','root','iti','store');
+		if(is_null(self::$conn)) self::$conn = mysqli_connect('localhost','root','osama','store');
 		if($id!=-1) {
 			# to get all the products for a specific user
 			$this->user_id=$id;
@@ -34,7 +34,9 @@ class cart{
 			mysqli_query(self::$conn,$query);
 		}
 		else{
-			$query = "insert into cart values('$user_id','$prod_id',1)";
+			// echo "string";
+			$query = "insert into cart('user_id','prod_id','qty') values('$user_id','$prod_id',1)";
+			// var_dump($query);
 			mysqli_query(self::$conn,$query);
 		}
 	}

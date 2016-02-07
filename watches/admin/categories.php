@@ -8,7 +8,7 @@ class categories{
 
 	function __construct($id=-1) {
 		if(self::$conn == Null) {
-			self::$conn = mysqli_connect('localhost','root','iti','store');
+			self::$conn = mysqli_connect('localhost','root','osama','store');
 		}
 		if ($id!=-1) {
 			$query = "select * from categories where id=$id limit 1";

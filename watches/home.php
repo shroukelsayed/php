@@ -155,7 +155,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="container">
     	<ul class="content-home">
            <li class="col-sm-4">
-              <a href="single.html" class="item-link" title="">
+              <a href="men.php" class="item-link" title="">
                 <div class="bannerBox">
                    <img src="images/w1.jpg" class="item-img" title="" alt="" width="100%" height="100%">
                    <div class="item-html">
@@ -167,7 +167,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               </a>
            </li>
            <li class="col-sm-4">
-              <a href="single.html" class="item-link" title="">
+              <a href="men.php" class="item-link" title="">
                 <div class="bannerBox">
                    <img src="images/w3.jpg" class="item-img" title="" alt="" width="100%" height="100%">
                    <div class="item-html">
@@ -179,7 +179,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
               </a>
            </li>
            <li class="col-sm-4">
-              <a href="single.html" class="item-link" title="">
+              <a href="men.php" class="item-link" title="">
                 <div class="bannerBox">
                    <img src="images/w2.jpg" class="item-img" title="" alt="" width="100%" height="100%">
                    <div class="item-html">
